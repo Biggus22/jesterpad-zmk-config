@@ -12,5 +12,6 @@ manifest:
     - name: Jesterpad
       remote: biggus22
       revision: main
+      path: modules/Jesterpad
   self:
     path: config
