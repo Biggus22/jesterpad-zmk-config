@@ -28,9 +28,9 @@
 
         layer_2 {
             bindings = <
-                /* Row 1 */ &rgb_to &rgb_hui &rgb_sai &rgb_bri &rgb_efi
-                /* Row 2 */ &rgb_md &rgb_hud &rgb_sad &rgb_brd &rgb_spd
-                /* Row 3 */ &rgb_eff &trans &trans &trans &trans
+                /* Row 1 */ &kp F1 &kp F2 &kp F3 &kp F4 &kp F5
+                /* Row 2 */ &kp F6 &kp F7 &kp F8 &kp F9 &kp F10
+                /* Row 3 */ &kp F11 &kp F12 &trans &trans &trans
                 /* Row 4 */ &trans &trans &trans &trans &trans
             >;
         };
