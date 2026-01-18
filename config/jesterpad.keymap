@@ -10,7 +10,7 @@
                 /* Row 1 */ &kp A &kp B &kp C &kp D &kp E
                 /* Row 2 */ &kp F &kp G &kp H &kp I &kp J
                 /* Row 3 */ &kp K &kp L &kp M &kp N &kp O
-                /* Row 4 */ &kp P &kp Q &none &kp R &kp S
+                /* Row 4 */ &kp P &kp Q &trans &kp R &kp S
             >;
         };
     };
