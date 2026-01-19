@@ -19,9 +19,36 @@
                 &kp SPACE
             >;
 
-            // For now, using simple key codes for encoder
-            // You can later map these to underglow controls in a behavior layer
             sensor-bindings = <&inc_dec_kp C D>;
+        };
+    };
+};
+
+/ {
+    behaviors {
+        ug_tog {
+            compatible = "zmk,behavior-rgb-ug";
+            label = "UG_TOG";
+            #binding-cells = <0>;
+            toggle;
+        };
+        ug_next {
+            compatible = "zmk,behavior-rgb-ug";
+            label = "UG_NEXT";
+            #binding-cells = <0>;
+            next;
+        };
+        ug_spd {
+            compatible = "zmk,behavior-rgb-ug";
+            label = "UG_SPD";
+            #binding-cells = <0>;
+            speed;
+        };
+        ug_val {
+            compatible = "zmk,behavior-rgb-ug";
+            label = "UG_VAL";
+            #binding-cells = <0>;
+            value;
         };
     };
 };
