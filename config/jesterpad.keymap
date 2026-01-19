@@ -8,7 +8,7 @@
         default_layer {
             bindings = <
                 // Row 1 (positions 0-4)
-                &ug_tog &ug_next &ug_spd &ug_val &kp E
+                &rgb_ug RGB_TOG &rgb_ug RGB_EFF &rgb_ug RGB_SPI &rgb_ug RGB_BRI &kp E
                 // Row 2 (positions 5-9)
                 &kp F &kp G &kp H &kp J &kp ESC
                 // Row 3 (positions 10-14)
@@ -20,35 +20,6 @@
             >;
 
             sensor-bindings = <&inc_dec_kp C D>;
-        };
-    };
-};
-
-/ {
-    behaviors {
-        ug_tog {
-            compatible = "zmk,behavior-rgb-ug";
-            label = "UG_TOG";
-            #binding-cells = <0>;
-            toggle;
-        };
-        ug_next {
-            compatible = "zmk,behavior-rgb-ug";
-            label = "UG_NEXT";
-            #binding-cells = <0>;
-            next;
-        };
-        ug_spd {
-            compatible = "zmk,behavior-rgb-ug";
-            label = "UG_SPD";
-            #binding-cells = <0>;
-            speed;
-        };
-        ug_val {
-            compatible = "zmk,behavior-rgb-ug";
-            label = "UG_VAL";
-            #binding-cells = <0>;
-            value;
         };
     };
 };
