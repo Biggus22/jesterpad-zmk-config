@@ -1,3 +1,4 @@
+#include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/rgb.h>
 
@@ -7,19 +8,20 @@
         default_layer {
             bindings = <
                 // Row 1 (positions 0-4)
-                &kp A &kp B &kp C &kp D &kp E
+                &ug_tog &ug_next &ug_spd &ug_val &kp E
                 // Row 2 (positions 5-9)
-                &kp F &ug_next &kp H &ug_spd &kp ESC
+                &kp F &kp G &kp H &kp J &kp ESC
                 // Row 3 (positions 10-14)
                 &kp K &kp L &kp M &kp N &kp O
                 // Row 4 (positions 15-16) - only 2 switches!
-                &ug_tog &ug_val
+                &kp P &kp Q
                 // Encoder button (position 17 via composite kscan)
                 &kp SPACE
             >;
 
-            // Encoder will control underglow brightness directly
-            sensor-bindings = <&ug_val_inc &ug_val_dec>;
+            // For now, using simple key codes for encoder
+            // You can later map these to underglow controls in a behavior layer
+            sensor-bindings = <&inc_dec_kp C D>;
         };
     };
 };
