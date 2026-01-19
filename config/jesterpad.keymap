@@ -2,6 +2,36 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/rgb.h>
 
+/behaviors {
+    inc_hue: inc_hue {
+        compatible = "zmk,behavior-rgb-hue";
+        label = "INC_HUE";
+        #binding-cells = <0>;
+        increment;
+    };
+
+    dec_hue: dec_hue {
+        compatible = "zmk,behavior-rgb-hue";
+        label = "DEC_HUE";
+        #binding-cells = <0>;
+        decrement;
+    };
+
+    inc_bri: inc_bri {
+        compatible = "zmk,behavior-rgb-bri";
+        label = "INC_BRI";
+        #binding-cells = <0>;
+        increment;
+    };
+
+    dec_bri: dec_bri {
+        compatible = "zmk,behavior-rgb-bri";
+        label = "DEC_BRI";
+        #binding-cells = <0>;
+        decrement;
+    };
+};
+
 / {
     keymap {
         compatible = "zmk,keymap";
@@ -19,8 +49,7 @@
                 &kp SPACE
             >;
 
-            // Using encoders to control underglow brightness and hue
-            sensor-bindings = <&inc_dec_kp UG_VAL_INC UG_VAL_DEC>;
+            sensor-bindings = <&inc_bri &dec_bri>;
         };
     };
 };
