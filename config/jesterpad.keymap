@@ -19,7 +19,8 @@
                 &kp SPACE
             >;
 
-            sensor-bindings = <&inc_dec_kp ug_hue ug_sat>;
+            // Using encoders to control underglow brightness and hue
+            sensor-bindings = <&inc_dec_kp UG_VAL_INC UG_VAL_DEC>;
         };
     };
 };
