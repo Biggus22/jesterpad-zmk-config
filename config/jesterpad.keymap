@@ -16,6 +16,18 @@
             hold-ms = <5000>;
             profile = <0>;
         };
+
+        rgb_brightness_cycle: rgb_brightness_cycle {
+            compatible = "zmk,behavior-rgb-cycle";
+            #binding-cells = <0>;
+            mode = "brightness";
+        };
+
+        rgb_speed_cycle: rgb_speed_cycle {
+            compatible = "zmk,behavior-rgb-cycle";
+            #binding-cells = <0>;
+            mode = "speed";
+        };
     };
 
     combos {
@@ -33,10 +45,10 @@
         compatible = "zmk,keymap";
         default_layer {
             bindings = <
-                &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
-                &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
-                &kp Q &kp W &kp E &kp R &kp T
-                &kp Y &kp U
+                &kp KP_N0 &kp KP_N1 &kp KP_N4 &kp KP_N7 &rgb_brightness_cycle
+                &kp KP_DOT &kp KP_N2 &kp KP_N5 &kp KP_N8 &rgb_ug RGB_HUI
+                &kp KP_ENTER &kp KP_N3 &kp KP_N6 &kp KP_N9 &rgb_speed_cycle
+                &rgb_ug RGB_EFF &rgb_ug RGB_EFR
                 &kp ENTER
             >;
             sensor-bindings = <&encoder_volume>;

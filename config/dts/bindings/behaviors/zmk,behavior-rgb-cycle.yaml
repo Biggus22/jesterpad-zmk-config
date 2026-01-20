@@ -1,0 +1,18 @@
+# Copyright (c) 2026
+# SPDX-License-Identifier: MIT
+
+description: Behavior that cycles RGB underglow parameters with rollover
+
+compatible: "zmk,behavior-rgb-cycle"
+
+properties:
+  "#binding-cells":
+    type: int
+    required: true
+    const: 0
+  mode:
+    type: string
+    required: true
+    enum:
+      - brightness
+      - speed
