@@ -3,6 +3,14 @@
 #include <dt-bindings/zmk/rgb.h>
 
 / {
+    behaviors {
+        rgb_hue_rotate: rgb_hue_rotate {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            #sensor-binding-cells = <2>;
+            bindings = <&rgb_ug>, <&rgb_ug>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
         default_layer {
@@ -18,8 +26,7 @@
                 // Encoder button (position 17 via composite kscan)
                 &kp SPACE
             >;
-
-            sensor-bindings = <&inc_dec_kp C D>;
+            sensor-bindings = <&rgb_hue_rotate RGB_HUI RGB_HUD>;
         };
     };
 };
