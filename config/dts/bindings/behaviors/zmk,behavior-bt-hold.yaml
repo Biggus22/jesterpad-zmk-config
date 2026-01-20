@@ -1,0 +1,20 @@
+# Copyright (c) 2026
+# SPDX-License-Identifier: MIT
+
+description: Behavior that runs a Bluetooth action after being held for a set duration
+
+compatible: "zmk,behavior-bt-hold"
+
+properties:
+  "#binding-cells":
+    type: int
+    required: true
+    const: 0
+  hold-ms:
+    type: int
+    required: false
+    default: 5000
+  profile:
+    type: int
+    required: false
+    default: 0

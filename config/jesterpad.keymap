@@ -9,6 +9,24 @@
             #sensor-binding-cells = <0>;
             bindings = <&kp C_VOL_UP>, <&kp C_VOL_DN>;
         };
+
+        bt_pair_hold: bt_pair_hold {
+            compatible = "zmk,behavior-bt-hold";
+            #binding-cells = <0>;
+            hold-ms = <5000>;
+            profile = <0>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        pair_combo: pair_combo {
+            timeout-ms = <500>;
+            slow-release;
+            key-positions = <0 5 10 15 16>; // 1, 6, Q, Y, U chord
+            bindings = <&bt_pair_hold>;
+        };
     };
 
     keymap {
