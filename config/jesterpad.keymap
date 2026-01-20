@@ -4,10 +4,10 @@
 
 / {
     behaviors {
-        rgb_hue_rotate: rgb_hue_rotate {
+        encoder_volume: encoder_volume {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&rgb_ug RGB_HUI>, <&rgb_ug RGB_HUD>;
+            bindings = <&kp C_VOL_UP>, <&kp C_VOL_DN>;
         };
     };
 
@@ -15,18 +15,13 @@
         compatible = "zmk,keymap";
         default_layer {
             bindings = <
-                // Row 1 (positions 0-4)
-                &rgb_ug RGB_TOG &rgb_ug RGB_EFF &rgb_ug RGB_SPI &rgb_ug RGB_BRI &kp E
-                // Row 2 (positions 5-9)
-                &kp F &kp G &kp H &kp J &kp ESC
-                // Row 3 (positions 10-14)
-                &kp K &kp L &kp M &kp N &kp O
-                // Row 4 (positions 15-16) - only 2 switches!
-                &kp P &kp Q
-                // Encoder button (position 17 via composite kscan)
-                &kp SPACE
+                &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
+                &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
+                &kp Q &kp W &kp E &kp R &kp T
+                &kp Y &kp U
+                &kp ENTER
             >;
-            sensor-bindings = <&rgb_hue_rotate>;
+            sensor-bindings = <&encoder_volume>;
         };
     };
 };
