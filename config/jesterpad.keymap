@@ -3,7 +3,7 @@
 #include <dt-bindings/zmk/rgb.h>
 
 / {
-    behaviors {
+    behaviors { // Updated in commit f58f545 for volume encoder
         encoder_volume: encoder_volume {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
