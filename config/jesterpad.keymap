@@ -5,9 +5,9 @@
 / {
     behaviors {
         rgb_hue_rotate: rgb_hue_rotate {
-            compatible = "zmk,behavior-sensor-rotate-var";
-            #sensor-binding-cells = <2>;
-            bindings = <&rgb_ug>, <&rgb_ug>;
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&rgb_ug RGB_HUI>, <&rgb_ug RGB_HUD>;
         };
     };
 
@@ -26,7 +26,7 @@
                 // Encoder button (position 17 via composite kscan)
                 &kp SPACE
             >;
-            sensor-bindings = <&rgb_hue_rotate RGB_HUI RGB_HUD>;
+            sensor-bindings = <&rgb_hue_rotate>;
         };
     };
 };
