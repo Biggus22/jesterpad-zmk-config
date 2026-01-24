@@ -92,21 +92,7 @@
             bindings = <&macro_tap &rgb_ug RGB_TOG>;
         };
 
-        f14_ballcall: f14_ballcall {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp F23>;
-        };
-
-        f14_salute: f14_salute {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&macro_tap &kp F24>;
-        };
+        // (reserved for future macros)
     };
 
     behaviors { // Updated in commit f58f545 for volume encoder
@@ -207,14 +193,6 @@
             bindings = <&mode_to_numpad>, <&mode_tap_admin>;
         };
 
-        f14_ball_salute: f14_ball_salute {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <500>;
-            bindings = <&f14_salute>, <&f14_ballcall>;
-        };
-
         bt_pair_hold: bt_pair_hold {
             compatible = "zmk,behavior-bt-hold";
             #binding-cells = <0>;
@@ -283,10 +261,19 @@
         f14_layer {
             display-name = "F14";
             bindings = <
-                &kp F13 &kp F18 &none &none &f14_ball_salute 0 0
-                &kp F14 &kp F19 &none &none &kp SCROLLLOCK
-                &kp F15 &kp F20 &kp F21 &kp F22 &kp PAUSE_BREAK
+                // Column 1 (bottom -> top): 25nm, GND STAB, Jester Toggle, Radio 1, Ready/Pre-Contact
+                &kp F13 &kp F18 &kp PAUSE_BREAK &kp F8 &kp F12
+
+                // Column 2 (bottom -> top): 50nm, AC STAB, Torch, Radio 2, Ball Call
+                &kp F14 &kp F19 &kp SCROLLLOCK &kp F9 &kp F23
+
+                // Column 3 (bottom -> top): 100nm, Lock Specific, PSTT/PD-STT, Break Lock, Salute
+                &kp F15 &kp F20 &kp F21 &kp F22 &kp F24
+
+                // Column 4/5 bottom keys: 200nm, Range Auto (tap) / Mode cycle (hold)
                 &kp F16 &mode_key_f14 0 0
+
+                // Extra key (unused)
                 &none
             >;
             sensor-bindings = <&encoder_volume>;
