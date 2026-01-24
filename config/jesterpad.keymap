@@ -102,6 +102,48 @@
             bindings = <&kp C_VOL_DN>, <&kp C_VOL_UP>;
         };
 
+        // F-14 dual-function (tap/hold) keys.
+        // Hold-tap requires two binding cells, but we don't need params; we pass 0 0 at use-sites.
+        f14_25_tws: f14_25_tws {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <500>;
+            bindings = <&kp F10>, <&kp F13>;
+        };
+
+        f14_50_rws: f14_50_rws {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <500>;
+            bindings = <&kp F7>, <&kp F14>;
+        };
+
+        f14_200_400: f14_200_400 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <500>;
+            bindings = <&kp F11>, <&kp F16>;
+        };
+
+        f14_r1_tacan: f14_r1_tacan {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <500>;
+            bindings = <&kp F6>, <&kp F8>;
+        };
+
+        f14_r2_datalink: f14_r2_datalink {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <500>;
+            bindings = <&kp F5>, <&kp F9>;
+        };
+
         // Underglow effect indexes (ZMK core): 0=solid, 1=breathe, 2=spectrum, 3=swirl.
         rgb_mode_numpad: rgb_mode_numpad {
             compatible = "zmk,behavior-rgb-preset";
@@ -262,16 +304,16 @@
             display-name = "F14";
             bindings = <
                 // Column 1 (bottom -> top): 25nm, GND STAB, Jester Toggle, Radio 1, Ready/Pre-Contact
-                &kp F13 &kp F18 &kp PAUSE_BREAK &kp F8 &kp F12
+                &f14_25_tws 0 0 &kp F18 &kp PAUSE_BREAK &f14_r1_tacan 0 0 &kp F12
 
                 // Column 2 (bottom -> top): 50nm, AC STAB, Torch, Radio 2, Ball Call
-                &kp F14 &kp F19 &kp SCROLLLOCK &kp F9 &kp F23
+                &f14_50_rws 0 0 &kp F19 &kp SCROLLLOCK &f14_r2_datalink 0 0 &kp F23
 
                 // Column 3 (bottom -> top): 100nm, Lock Specific, PSTT/PD-STT, Break Lock, Salute
                 &kp F15 &kp F20 &kp F21 &kp F22 &kp F24
 
                 // Column 4/5 bottom keys: 200nm, Range Auto (tap) / Mode cycle (hold)
-                &kp F16 &mode_key_f14 0 0
+                &f14_200_400 0 0 &mode_key_f14 0 0
 
                 // Extra key (unused)
                 &none
