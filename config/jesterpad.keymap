@@ -109,7 +109,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <500>;
-            bindings = <&kp F10>, <&kp F13>;
+            bindings = <&kp &kp>;
         };
 
         f14_50_rws: f14_50_rws {
@@ -117,7 +117,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <500>;
-            bindings = <&kp F7>, <&kp F14>;
+            bindings = <&kp &kp>;
         };
 
         f14_200_400: f14_200_400 {
@@ -125,7 +125,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <500>;
-            bindings = <&kp F11>, <&kp F16>;
+            bindings = <&kp &kp>;
         };
 
         f14_r1_tacan: f14_r1_tacan {
@@ -133,7 +133,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <500>;
-            bindings = <&kp F6>, <&kp F8>;
+            bindings = <&kp &kp>;
         };
 
         f14_r2_datalink: f14_r2_datalink {
@@ -141,7 +141,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <500>;
-            bindings = <&kp F5>, <&kp F9>;
+            bindings = <&kp &kp>;
         };
 
         // Underglow effect indexes (ZMK core): 0=solid, 1=breathe, 2=spectrum, 3=swirl.
@@ -304,16 +304,16 @@
             display-name = "F14";
             bindings = <
                 // Column 1 (bottom -> top): 25nm, GND STAB, Jester Toggle, Radio 1, Ready/Pre-Contact
-                &f14_25_tws 0 0 &kp F18 &kp PAUSE_BREAK &f14_r1_tacan 0 0 &kp F12
+                &f14_25_tws F10 F13 &kp F18 &kp PAUSE_BREAK &f14_r1_tacan F6 F8 &kp F12
 
                 // Column 2 (bottom -> top): 50nm, AC STAB, Torch, Radio 2, Ball Call
-                &f14_50_rws 0 0 &kp F19 &kp SCROLLLOCK &f14_r2_datalink 0 0 &kp F23
+                &f14_50_rws F7 F14 &kp F19 &kp SCROLLLOCK &f14_r2_datalink F5 F9 &kp F23
 
                 // Column 3 (bottom -> top): 100nm, Lock Specific, PSTT/PD-STT, Break Lock, Salute
                 &kp F15 &kp F20 &kp F21 &kp F22 &kp F24
 
                 // Column 4/5 bottom keys: 200nm, Range Auto (tap) / Mode cycle (hold)
-                &f14_200_400 0 0 &mode_key_f14 0 0
+                &f14_200_400 F11 F16 &mode_key_f14 0 0
 
                 // Extra key (unused)
                 &none
