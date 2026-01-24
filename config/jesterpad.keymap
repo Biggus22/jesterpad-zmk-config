@@ -1,8 +1,114 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/rgb.h>
 
+#define L_NUMPAD 0
+#define L_MACROS 1
+#define L_F14 2
+#define L_F4 3
+#define L_ADMIN 4
+
 / {
+    macros {
+        mode_to_numpad: mode_to_numpad {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &rgb_mode_numpad>, <&macro_tap &to L_NUMPAD>;
+        };
+
+        mode_to_macros: mode_to_macros {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &rgb_mode_macros>, <&macro_tap &to L_MACROS>;
+        };
+
+        mode_to_f14: mode_to_f14 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &rgb_mode_f14>, <&macro_tap &to L_F14>;
+        };
+
+        mode_to_f4: mode_to_f4 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &rgb_mode_f4>, <&macro_tap &to L_F4>;
+        };
+
+        mode_to_admin: mode_to_admin {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &rgb_mode_admin>, <&macro_tap &to L_ADMIN>;
+        };
+
+        mode_tap_numpad: mode_tap_numpad {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &none>;
+        };
+
+        mode_tap_macros: mode_tap_macros {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp PSCRN>;
+        };
+
+        mode_tap_f14: mode_tap_f14 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp F17>;
+        };
+
+        mode_tap_f4: mode_tap_f4 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &none>;
+        };
+
+        mode_tap_admin: mode_tap_admin {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &rgb_ug RGB_TOG>;
+        };
+
+        f14_ballcall: f14_ballcall {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp F23>;
+        };
+
+        f14_salute: f14_salute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_tap &kp F24>;
+        };
+    };
+
     behaviors { // Updated in commit f58f545 for volume encoder
         encoder_volume: encoder_volume {
             compatible = "zmk,behavior-sensor-rotate";
@@ -10,10 +116,117 @@
             bindings = <&kp C_VOL_DN>, <&kp C_VOL_UP>;
         };
 
+        // Underglow effect indexes (ZMK core): 0=solid, 1=breathe, 2=spectrum, 3=swirl.
+        rgb_mode_numpad: rgb_mode_numpad {
+            compatible = "zmk,behavior-rgb-preset";
+            #binding-cells = <0>;
+            effect = <0>;
+            h = <0>;
+            s = <0>;
+            b = <100>;
+            speed = <3>;
+        };
+
+        rgb_mode_macros: rgb_mode_macros {
+            compatible = "zmk,behavior-rgb-preset";
+            #binding-cells = <0>;
+            effect = <0>;
+            h = <180>;
+            s = <100>;
+            b = <100>;
+            speed = <3>;
+        };
+
+        rgb_mode_f14: rgb_mode_f14 {
+            compatible = "zmk,behavior-rgb-preset";
+            #binding-cells = <0>;
+            effect = <0>;
+            h = <30>;
+            s = <100>;
+            b = <100>;
+            speed = <3>;
+        };
+
+        rgb_mode_f4: rgb_mode_f4 {
+            compatible = "zmk,behavior-rgb-preset";
+            #binding-cells = <0>;
+            effect = <0>;
+            h = <120>;
+            s = <100>;
+            b = <100>;
+            speed = <3>;
+        };
+
+        rgb_mode_admin: rgb_mode_admin {
+            compatible = "zmk,behavior-rgb-preset";
+            #binding-cells = <0>;
+            effect = <3>;
+            h = <270>;
+            s = <100>;
+            b = <100>;
+            speed = <1>;
+        };
+
+        mode_key_numpad: mode_key_numpad {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <2000>;
+            bindings = <&mode_to_macros>, <&mode_tap_numpad>;
+        };
+
+        mode_key_macros: mode_key_macros {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <2000>;
+            bindings = <&mode_to_f14>, <&mode_tap_macros>;
+        };
+
+        mode_key_f14: mode_key_f14 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <2000>;
+            bindings = <&mode_to_f4>, <&mode_tap_f14>;
+        };
+
+        mode_key_f4: mode_key_f4 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <2000>;
+            bindings = <&mode_to_admin>, <&mode_tap_f4>;
+        };
+
+        mode_key_admin: mode_key_admin {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <2000>;
+            bindings = <&mode_to_numpad>, <&mode_tap_admin>;
+        };
+
+        f14_ball_salute: f14_ball_salute {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <500>;
+            bindings = <&f14_salute>, <&f14_ballcall>;
+        };
+
         bt_pair_hold: bt_pair_hold {
             compatible = "zmk,behavior-bt-hold";
             #binding-cells = <0>;
             hold-ms = <5000>;
+            profile = <0>;
+        };
+
+        bt_clear_all_hold: bt_clear_all_hold {
+            compatible = "zmk,behavior-bt-hold";
+            #binding-cells = <0>;
+            hold-ms = <10000>;
+            clear-all;
             profile = <0>;
         };
 
@@ -44,12 +257,61 @@
     keymap {
         compatible = "zmk,keymap";
         default_layer {
+            display-name = "NUMPAD";
             bindings = <
-                &kp KP_N0 &kp KP_N1 &kp KP_N4 &kp KP_N7 &rgb_brightness_cycle
-                &kp KP_DOT &kp KP_N2 &kp KP_N5 &kp KP_N8 &rgb_ug RGB_HUI
-                &kp KP_ENTER &kp KP_N3 &kp KP_N6 &kp KP_N9 &rgb_speed_cycle
-                &rgb_ug RGB_EFF &rgb_ug RGB_EFR
+                &kp KP_N0 &kp KP_N1 &kp KP_N4 &kp KP_N7 &kp KP_SLASH
+                &kp KP_DOT &kp KP_N2 &kp KP_N5 &kp KP_N8 &kp KP_ASTERISK
+                &kp KP_ENTER &kp KP_N3 &kp KP_N6 &kp KP_N9 &kp KP_MINUS
+                &kp KP_PLUS &mode_key_numpad
                 &kp ENTER
+            >;
+            sensor-bindings = <&encoder_volume>;
+        };
+
+        macros_layer {
+            display-name = "MACROS";
+            bindings = <
+                &kp C_PLAY_PAUSE &kp C_AC_COPY &kp C_AC_UNDO &kp LG(D) &kp HOME
+                &kp C_PREVIOUS &kp C_AC_PASTE &kp C_AC_REDO &kp LG(E) &kp PG_UP
+                &kp C_NEXT &kp C_AC_CUT &kp C_AC_FIND &kp LG(L) &kp PG_DN
+                &kp C_MUTE &mode_key_macros
+                &kp ENTER
+            >;
+            sensor-bindings = <&encoder_volume>;
+        };
+
+        f14_layer {
+            display-name = "F14";
+            bindings = <
+                &kp F13 &kp F18 &none &none &f14_ball_salute
+                &kp F14 &kp F19 &none &none &kp SCROLLLOCK
+                &kp F15 &kp F20 &kp F21 &kp F22 &kp PAUSE_BREAK
+                &kp F16 &mode_key_f14
+                &none
+            >;
+            sensor-bindings = <&encoder_volume>;
+        };
+
+        f4_layer {
+            display-name = "F4";
+            bindings = <
+                &none &none &none &none &none
+                &none &none &none &none &none
+                &none &none &none &none &none
+                &none &mode_key_f4
+                &none
+            >;
+            sensor-bindings = <&encoder_volume>;
+        };
+
+        admin_layer {
+            display-name = "ADMIN";
+            bindings = <
+                &bt BT_CLR &bt_clear_all_hold &bt BT_NXT &out OUT_TOG &rgb_ug RGB_TOG
+                &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
+                &rgb_ug RGB_HUD &rgb_ug RGB_HUI &rgb_brightness_cycle &rgb_speed_cycle &rgb_ug RGB_EFF
+                &bootloader &mode_key_admin
+                &sys_reset
             >;
             sensor-bindings = <&encoder_volume>;
         };

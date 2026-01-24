@@ -1,0 +1,37 @@
+# Copyright (c) 2026
+# SPDX-License-Identifier: MIT
+
+description: Behavior that applies a fixed RGB underglow preset (effect, color, speed)
+
+compatible: "zmk,behavior-rgb-preset"
+
+properties:
+  "#binding-cells":
+    type: int
+    required: true
+    const: 0
+
+  h:
+    type: int
+    required: false
+    default: 0
+
+  s:
+    type: int
+    required: false
+    default: 100
+
+  b:
+    type: int
+    required: false
+    default: 100
+
+  effect:
+    type: int
+    required: false
+    default: 0
+
+  speed:
+    type: int
+    required: false
+    default: 3

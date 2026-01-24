@@ -17,6 +17,7 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 struct bt_hold_config {
     const uint32_t hold_ms;
     const uint8_t profile;
+    const bool clear_all;
 };
 
 struct bt_hold_data {
@@ -31,6 +32,34 @@ static void bt_hold_work_handler(struct k_work *work) {
     const struct bt_hold_config *cfg = dev->config;
 
     data->triggered = true;
+
+    if (cfg->clear_all) {
+        int err_any = 0;
+
+        for (uint8_t i = 0; i < ZMK_BLE_PROFILE_COUNT; i++) {
+            int err = zmk_ble_prof_select(i);
+            if (err) {
+                LOG_ERR("Failed to focus profile %u: %d", i, err);
+                err_any = err;
+                continue;
+            }
+
+            zmk_ble_clear_bonds();
+        }
+
+        int err = zmk_ble_prof_select(cfg->profile);
+        if (err) {
+            LOG_ERR("BT profile %u reselect failed: %d", cfg->profile, err);
+        } else {
+            LOG_INF("BT profiles cleared; advertising on profile %u", cfg->profile);
+        }
+
+        if (err_any) {
+            LOG_WRN("One or more profiles failed to clear");
+        }
+
+        return;
+    }
 
     int err = zmk_ble_prof_select(cfg->profile);
     if (err) {
@@ -90,6 +119,7 @@ static int bt_hold_init(const struct device *dev) {
     static const struct bt_hold_config bt_hold_config_##i = {                                     \
         .hold_ms = DT_INST_PROP(i, hold_ms),                                                      \
         .profile = DT_INST_PROP(i, profile),                                                      \
+        .clear_all = DT_INST_PROP_OR(i, clear_all, false),                                         \
     };                                                                                            \
     BEHAVIOR_DT_INST_DEFINE(i, bt_hold_init, NULL, &bt_hold_data_##i, &bt_hold_config_##i,        \
                             APPLICATION, CONFIG_KERNEL_INIT_PRIORITY_DEFAULT,                    \
