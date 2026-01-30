@@ -99,7 +99,7 @@
         encoder_volume: encoder_volume {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&kp C_VOL_DN>, <&kp C_VOL_UP>;
+            bindings = <&kp LC(LA(LBKT))>, <&kp LC(LA(RBKT))>;
         };
 
         // F-14 dual-function (tap/hold) keys.
@@ -216,7 +216,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <2000>;
-            bindings = <&mode_to_f4>, <&mode_tap_f14>;
+            bindings = <&none>, <&mode_tap_f14>;
         };
 
         mode_key_f4: mode_key_f4 {
@@ -277,6 +277,29 @@
     keymap {
         compatible = "zmk,keymap";
         default_layer {
+            display-name = "F14";
+            bindings = <
+                // Column 1 (bottom -> top): 25nm, GND STAB, Jester Toggle, Radio 1, Ready/Pre-Contact
+                &f14_25_tws LC(LA(N6)) LC(LS(R)) &kp LC(LA(N4)) &kp PAUSE_BREAK &f14_r1_tacan F6 RA(BSLH) &kp LC(LA(N2))
+
+                // Column 2 (bottom -> top): 50nm, AC STAB, Torch, Radio 2, Ball Call
+                &f14_50_rws LC(LA(N7)) LC(LS(U)) &kp LC(LA(N5)) &kp LA(L) &f14_r2_datalink F5 RC(BSLH) &kp LC(LA(N1))
+
+                // Column 3 (bottom -> top): 100nm, Lock Specific, PSTT/PD-STT, Break Lock, Salute
+                &kp LC(LS(Q)) &kp LC(LS(O)) &kp LC(LA(N3)) &kp LC(LA(U)) &kp LS(U)
+
+                // Column 4/5 bottom keys: 200nm, Range Auto (tap) / Mode cycle (hold)
+                &f14_200_400 LC(LS(T)) LC(LS(W)) &mode_key_f14 0 0
+
+                // Extra key (unused)
+                &none
+            >;
+            sensor-bindings = <&encoder_volume>;
+        };
+
+#if 0
+        /* Disabled layers (kept for future use) */
+        default_layer {
             display-name = "NUMPAD";
             bindings = <
                 &kp KP_N0 &kp KP_N1 &kp KP_N4 &kp KP_N7 &kp KP_SLASH
@@ -296,27 +319,6 @@
                 &kp C_NEXT &kp C_AC_CUT &kp C_AC_FIND &kp LG(L) &kp PG_DN
                 &kp C_MUTE &mode_key_macros 0 0
                 &kp ENTER
-            >;
-            sensor-bindings = <&encoder_volume>;
-        };
-
-        f14_layer {
-            display-name = "F14";
-            bindings = <
-                // Column 1 (bottom -> top): 25nm, GND STAB, Jester Toggle, Radio 1, Ready/Pre-Contact
-                &f14_25_tws LC(LA(N6)) LC(LS(R)) &kp LC(LA(N4)) &kp PAUSE_BREAK &f14_r1_tacan F6 RA(BSLH) &kp LC(LA(N2))
-
-                // Column 2 (bottom -> top): 50nm, AC STAB, Torch, Radio 2, Ball Call
-                &f14_50_rws LC(LA(N7)) LC(LS(U)) &kp LC(LA(N5)) &kp LA(L) &f14_r2_datalink F5 RC(BSLH) &kp LC(LA(N1))
-
-                // Column 3 (bottom -> top): 100nm, Lock Specific, PSTT/PD-STT, Break Lock, Salute
-                &kp LC(LS(Q)) &kp LC(LS(O)) &kp LC(LA(N3)) &kp LC(LA(U)) &kp LS(U)
-
-                // Column 4/5 bottom keys: 200nm, Range Auto (tap) / Mode cycle (hold)
-                &f14_200_400 LC(LS(T)) LC(LS(W)) &mode_key_f14 0 0
-
-                // Extra key (unused)
-                &none
             >;
             sensor-bindings = <&encoder_volume>;
         };
@@ -344,5 +346,6 @@
             >;
             sensor-bindings = <&encoder_volume>;
         };
+#endif
     };
 };
