@@ -73,7 +73,7 @@
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
-            bindings = <&macro_tap &kp F17>;
+            bindings = <&macro_tap &kp LC(LS(I))>;
         };
 
         mode_tap_f4: mode_tap_f4 {
@@ -304,16 +304,16 @@
             display-name = "F14";
             bindings = <
                 // Column 1 (bottom -> top): 25nm, GND STAB, Jester Toggle, Radio 1, Ready/Pre-Contact
-                &f14_25_tws F10 F13 &kp F18 &kp PAUSE_BREAK &f14_r1_tacan F6 F8 &kp F12
+                &f14_25_tws LC(LA(N6)) LC(LS(R)) &kp LC(LA(N4)) &kp PAUSE_BREAK &f14_r1_tacan F6 RA(BSLH) &kp LC(LA(N2))
 
                 // Column 2 (bottom -> top): 50nm, AC STAB, Torch, Radio 2, Ball Call
-                &f14_50_rws F7 F14 &kp F19 &kp SCROLLLOCK &f14_r2_datalink F5 F9 &kp F23
+                &f14_50_rws LC(LA(N7)) LC(LS(U)) &kp LC(LA(N5)) &kp LA(L) &f14_r2_datalink F5 RC(BSLH) &kp LC(LA(N1))
 
                 // Column 3 (bottom -> top): 100nm, Lock Specific, PSTT/PD-STT, Break Lock, Salute
-                &kp F15 &kp F20 &kp F21 &kp F22 &kp F24
+                &kp LC(LS(Q)) &kp LC(LS(O)) &kp LC(LA(N3)) &kp LC(LA(U)) &kp LS(U)
 
                 // Column 4/5 bottom keys: 200nm, Range Auto (tap) / Mode cycle (hold)
-                &f14_200_400 F11 F16 &mode_key_f14 0 0
+                &f14_200_400 LC(LS(T)) LC(LS(W)) &mode_key_f14 0 0
 
                 // Extra key (unused)
                 &none
