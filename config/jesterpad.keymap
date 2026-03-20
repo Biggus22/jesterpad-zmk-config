@@ -290,9 +290,6 @@
 
                 // Column 4/5 bottom keys: 200nm, Range Auto (tap) / Mode cycle (hold)
                 &f14_200_400 PG_UP F16 &mode_key_f14 0 0
-
-                // Extra key: force USB HID output.
-                &out OUT_USB
             >;
             sensor-bindings = <&encoder_volume>;
         };
