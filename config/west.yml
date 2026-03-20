@@ -7,7 +7,7 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: af7dcb1e5a261a632277a86d681e1a9ed6ffcf06
+      revision: v0.3.0
       import: app/west.yml
     - name: Jesterpad
       remote: biggus22
